@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ExplorarRouteImport } from './routes/explorar'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as ProveedoresProviderIdRouteImport } from './routes/proveedores.$providerId'
 
 const IndexRoute = IndexRouteImport.update({
@@ -23,6 +24,11 @@ const ExplorarRoute = ExplorarRouteImport.update({
   path: '/explorar',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProveedoresProviderIdRoute = ProveedoresProviderIdRouteImport.update({
   id: '/proveedores/$providerId',
   path: '/proveedores/$providerId',
@@ -32,30 +38,34 @@ const ProveedoresProviderIdRoute = ProveedoresProviderIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/explorar': typeof ExplorarRoute
+  '/login': typeof LoginRoute
   '/proveedores/$providerId': typeof ProveedoresProviderIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/explorar': typeof ExplorarRoute
+  '/login': typeof LoginRoute
   '/proveedores/$providerId': typeof ProveedoresProviderIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/explorar': typeof ExplorarRoute
+  '/login': typeof LoginRoute
   '/proveedores/$providerId': typeof ProveedoresProviderIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/explorar' | '/proveedores/$providerId'
+  fullPaths: '/' | '/explorar' | '/login' | '/proveedores/$providerId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/explorar' | '/proveedores/$providerId'
-  id: '__root__' | '/' | '/explorar' | '/proveedores/$providerId'
+  to: '/' | '/explorar' | '/login' | '/proveedores/$providerId'
+  id: '__root__' | '/' | '/explorar' | '/login' | '/proveedores/$providerId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ExplorarRoute: typeof ExplorarRoute
+  LoginRoute: typeof LoginRoute
   ProveedoresProviderIdRoute: typeof ProveedoresProviderIdRoute
 }
 
@@ -75,6 +85,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ExplorarRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/proveedores/$providerId': {
       id: '/proveedores/$providerId'
       path: '/proveedores/$providerId'
@@ -88,6 +105,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ExplorarRoute: ExplorarRoute,
+  LoginRoute: LoginRoute,
   ProveedoresProviderIdRoute: ProveedoresProviderIdRoute,
 }
 export const routeTree = rootRouteImport
