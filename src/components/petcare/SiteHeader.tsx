@@ -87,7 +87,7 @@ export function SiteHeader() {
                 <SheetHeader>
                   <SheetTitle className="text-left">Menú</SheetTitle>
                 </SheetHeader>
-                <nav className="mt-2 flex flex-col gap-1 px-4" aria-label="Navegación móvil">
+                <nav className="mt-4 flex flex-col gap-1" aria-label="Navegación móvil">
                   {nav.map((item) => (
                     <Link
                       key={item.to}
@@ -107,7 +107,7 @@ export function SiteHeader() {
                   )}
                 </nav>
                 {hydrated && !user && (
-                  <div className="mt-6 flex flex-col gap-2 px-4">
+                  <div className="mt-6 flex flex-col gap-2">
                     <Button asChild variant="secondary">
                       <Link to="/login" onClick={() => setOpen(false)}>Iniciar sesión</Link>
                     </Button>
