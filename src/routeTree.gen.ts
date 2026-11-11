@@ -14,6 +14,7 @@ import { Route as ExplorarRouteImport } from './routes/explorar'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as RegistroRouteImport } from './routes/registro'
 import { Route as ProveedoresProviderIdRouteImport } from './routes/proveedores.$providerId'
+import { Route as SolicitarServiceIdRouteImport } from './routes/solicitar.$serviceId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -40,6 +41,11 @@ const ProveedoresProviderIdRoute = ProveedoresProviderIdRouteImport.update({
   path: '/proveedores/$providerId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SolicitarServiceIdRoute = SolicitarServiceIdRouteImport.update({
+  id: '/solicitar/$serviceId',
+  path: '/solicitar/$serviceId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -47,6 +53,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/registro': typeof RegistroRoute
   '/proveedores/$providerId': typeof ProveedoresProviderIdRoute
+  '/solicitar/$serviceId': typeof SolicitarServiceIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +61,7 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/registro': typeof RegistroRoute
   '/proveedores/$providerId': typeof ProveedoresProviderIdRoute
+  '/solicitar/$serviceId': typeof SolicitarServiceIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,13 +70,25 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/registro': typeof RegistroRoute
   '/proveedores/$providerId': typeof ProveedoresProviderIdRoute
+  '/solicitar/$serviceId': typeof SolicitarServiceIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/explorar' | '/login' | '/registro' | '/proveedores/$providerId'
+    | '/'
+    | '/explorar'
+    | '/login'
+    | '/registro'
+    | '/proveedores/$providerId'
+    | '/solicitar/$serviceId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/explorar' | '/login' | '/registro' | '/proveedores/$providerId'
+  to:
+    | '/'
+    | '/explorar'
+    | '/login'
+    | '/registro'
+    | '/proveedores/$providerId'
+    | '/solicitar/$serviceId'
   id:
     | '__root__'
     | '/'
@@ -76,6 +96,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/registro'
     | '/proveedores/$providerId'
+    | '/solicitar/$serviceId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -84,6 +105,7 @@ export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
   RegistroRoute: typeof RegistroRoute
   ProveedoresProviderIdRoute: typeof ProveedoresProviderIdRoute
+  SolicitarServiceIdRoute: typeof SolicitarServiceIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -123,6 +145,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProveedoresProviderIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/solicitar/$serviceId': {
+      id: '/solicitar/$serviceId'
+      path: '/solicitar/$serviceId'
+      fullPath: '/solicitar/$serviceId'
+      preLoaderRoute: typeof SolicitarServiceIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -132,6 +161,7 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   RegistroRoute: RegistroRoute,
   ProveedoresProviderIdRoute: ProveedoresProviderIdRoute,
+  SolicitarServiceIdRoute: SolicitarServiceIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
