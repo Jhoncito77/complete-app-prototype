@@ -12,7 +12,10 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ExplorarRouteImport } from './routes/explorar'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as PropietarioRouteImport } from './routes/propietario'
 import { Route as RegistroRouteImport } from './routes/registro'
+import { Route as PropietarioIndexRouteImport } from './routes/propietario.index'
+import { Route as PropietarioSolicitudesRouteImport } from './routes/propietario.solicitudes'
 import { Route as ProveedoresProviderIdRouteImport } from './routes/proveedores.$providerId'
 import { Route as SolicitarServiceIdRouteImport } from './routes/solicitar.$serviceId'
 
@@ -31,10 +34,25 @@ const LoginRoute = LoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PropietarioRoute = PropietarioRouteImport.update({
+  id: '/propietario',
+  path: '/propietario',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RegistroRoute = RegistroRouteImport.update({
   id: '/registro',
   path: '/registro',
   getParentRoute: () => rootRouteImport,
+} as any)
+const PropietarioIndexRoute = PropietarioIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => PropietarioRoute,
+} as any)
+const PropietarioSolicitudesRoute = PropietarioSolicitudesRouteImport.update({
+  id: '/solicitudes',
+  path: '/solicitudes',
+  getParentRoute: () => PropietarioRoute,
 } as any)
 const ProveedoresProviderIdRoute = ProveedoresProviderIdRouteImport.update({
   id: '/proveedores/$providerId',
@@ -51,26 +69,34 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/explorar': typeof ExplorarRoute
   '/login': typeof LoginRoute
+  '/propietario': typeof PropietarioRouteWithChildren
   '/registro': typeof RegistroRoute
+  '/propietario/solicitudes': typeof PropietarioSolicitudesRoute
   '/proveedores/$providerId': typeof ProveedoresProviderIdRoute
   '/solicitar/$serviceId': typeof SolicitarServiceIdRoute
+  '/propietario/': typeof PropietarioIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/explorar': typeof ExplorarRoute
   '/login': typeof LoginRoute
   '/registro': typeof RegistroRoute
+  '/propietario/solicitudes': typeof PropietarioSolicitudesRoute
   '/proveedores/$providerId': typeof ProveedoresProviderIdRoute
   '/solicitar/$serviceId': typeof SolicitarServiceIdRoute
+  '/propietario': typeof PropietarioIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/explorar': typeof ExplorarRoute
   '/login': typeof LoginRoute
+  '/propietario': typeof PropietarioRouteWithChildren
   '/registro': typeof RegistroRoute
+  '/propietario/solicitudes': typeof PropietarioSolicitudesRoute
   '/proveedores/$providerId': typeof ProveedoresProviderIdRoute
   '/solicitar/$serviceId': typeof SolicitarServiceIdRoute
+  '/propietario/': typeof PropietarioIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -78,31 +104,40 @@ export interface FileRouteTypes {
     | '/'
     | '/explorar'
     | '/login'
+    | '/propietario'
     | '/registro'
+    | '/propietario/solicitudes'
     | '/proveedores/$providerId'
     | '/solicitar/$serviceId'
+    | '/propietario/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/explorar'
     | '/login'
     | '/registro'
+    | '/propietario/solicitudes'
     | '/proveedores/$providerId'
     | '/solicitar/$serviceId'
+    | '/propietario'
   id:
     | '__root__'
     | '/'
     | '/explorar'
     | '/login'
+    | '/propietario'
     | '/registro'
+    | '/propietario/solicitudes'
     | '/proveedores/$providerId'
     | '/solicitar/$serviceId'
+    | '/propietario/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ExplorarRoute: typeof ExplorarRoute
   LoginRoute: typeof LoginRoute
+  PropietarioRoute: typeof PropietarioRouteWithChildren
   RegistroRoute: typeof RegistroRoute
   ProveedoresProviderIdRoute: typeof ProveedoresProviderIdRoute
   SolicitarServiceIdRoute: typeof SolicitarServiceIdRoute
@@ -131,12 +166,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/propietario': {
+      id: '/propietario'
+      path: '/propietario'
+      fullPath: '/propietario'
+      preLoaderRoute: typeof PropietarioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/registro': {
       id: '/registro'
       path: '/registro'
       fullPath: '/registro'
       preLoaderRoute: typeof RegistroRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/propietario/': {
+      id: '/propietario/'
+      path: '/'
+      fullPath: '/propietario/'
+      preLoaderRoute: typeof PropietarioIndexRouteImport
+      parentRoute: typeof PropietarioRoute
+    }
+    '/propietario/solicitudes': {
+      id: '/propietario/solicitudes'
+      path: '/solicitudes'
+      fullPath: '/propietario/solicitudes'
+      preLoaderRoute: typeof PropietarioSolicitudesRouteImport
+      parentRoute: typeof PropietarioRoute
     }
     '/proveedores/$providerId': {
       id: '/proveedores/$providerId'
@@ -155,10 +211,25 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface PropietarioRouteChildren {
+  PropietarioSolicitudesRoute: typeof PropietarioSolicitudesRoute
+  PropietarioIndexRoute: typeof PropietarioIndexRoute
+}
+
+const PropietarioRouteChildren: PropietarioRouteChildren = {
+  PropietarioSolicitudesRoute: PropietarioSolicitudesRoute,
+  PropietarioIndexRoute: PropietarioIndexRoute,
+}
+
+const PropietarioRouteWithChildren = PropietarioRoute._addFileChildren(
+  PropietarioRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ExplorarRoute: ExplorarRoute,
   LoginRoute: LoginRoute,
+  PropietarioRoute: PropietarioRouteWithChildren,
   RegistroRoute: RegistroRoute,
   ProveedoresProviderIdRoute: ProveedoresProviderIdRoute,
   SolicitarServiceIdRoute: SolicitarServiceIdRoute,
