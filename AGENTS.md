@@ -28,3 +28,10 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+
+- PetCare is a front-end-only prototype: all data (users, providers, services, requests, usability notes) lives in `src/lib/petcare/store.ts` (useSyncExternalStore + localStorage, seeded from `seed.ts`). Why: the brief asks for a navigable prototype with locally simulated states; swap the store actions for a backend later without touching screens.
+- Request status transitions are enforced only in `canTransition` (pendiente → aceptada|rechazada, aceptada → finalizada). Why: single source for the core owner ↔ provider rule; covered by `src/test/petcare-rules.test.ts`.
+- Role-gated areas (`/propietario/*`, `/proveedor/*`, `/solicitar/*`) render through `RequireRole` / the provider layout after hydration. Why: session is client-only, so SSR must not guess the user.
+- Status is always shown via `StatusBadge` (color + icon + text). Why: accessibility rule from the brief, never color alone.
