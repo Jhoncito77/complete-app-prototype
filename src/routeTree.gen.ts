@@ -19,7 +19,9 @@ import { Route as PropietarioIndexRouteImport } from './routes/propietario.index
 import { Route as PropietarioPerfilRouteImport } from './routes/propietario.perfil'
 import { Route as PropietarioSolicitudesRouteImport } from './routes/propietario.solicitudes'
 import { Route as ProveedorIndexRouteImport } from './routes/proveedor.index'
+import { Route as ProveedorPerfilRouteImport } from './routes/proveedor.perfil'
 import { Route as ProveedorReportesRouteImport } from './routes/proveedor.reportes'
+import { Route as ProveedorServiciosRouteImport } from './routes/proveedor.servicios'
 import { Route as ProveedorSolicitudesRouteImport } from './routes/proveedor.solicitudes'
 import { Route as ProveedoresProviderIdRouteImport } from './routes/proveedores.$providerId'
 import { Route as SolicitarServiceIdRouteImport } from './routes/solicitar.$serviceId'
@@ -74,9 +76,19 @@ const ProveedorIndexRoute = ProveedorIndexRouteImport.update({
   path: '/',
   getParentRoute: () => ProveedorRoute,
 } as any)
+const ProveedorPerfilRoute = ProveedorPerfilRouteImport.update({
+  id: '/perfil',
+  path: '/perfil',
+  getParentRoute: () => ProveedorRoute,
+} as any)
 const ProveedorReportesRoute = ProveedorReportesRouteImport.update({
   id: '/reportes',
   path: '/reportes',
+  getParentRoute: () => ProveedorRoute,
+} as any)
+const ProveedorServiciosRoute = ProveedorServiciosRouteImport.update({
+  id: '/servicios',
+  path: '/servicios',
   getParentRoute: () => ProveedorRoute,
 } as any)
 const ProveedorSolicitudesRoute = ProveedorSolicitudesRouteImport.update({
@@ -104,7 +116,9 @@ export interface FileRoutesByFullPath {
   '/registro': typeof RegistroRoute
   '/propietario/perfil': typeof PropietarioPerfilRoute
   '/propietario/solicitudes': typeof PropietarioSolicitudesRoute
+  '/proveedor/perfil': typeof ProveedorPerfilRoute
   '/proveedor/reportes': typeof ProveedorReportesRoute
+  '/proveedor/servicios': typeof ProveedorServiciosRoute
   '/proveedor/solicitudes': typeof ProveedorSolicitudesRoute
   '/proveedores/$providerId': typeof ProveedoresProviderIdRoute
   '/solicitar/$serviceId': typeof SolicitarServiceIdRoute
@@ -118,7 +132,9 @@ export interface FileRoutesByTo {
   '/registro': typeof RegistroRoute
   '/propietario/perfil': typeof PropietarioPerfilRoute
   '/propietario/solicitudes': typeof PropietarioSolicitudesRoute
+  '/proveedor/perfil': typeof ProveedorPerfilRoute
   '/proveedor/reportes': typeof ProveedorReportesRoute
+  '/proveedor/servicios': typeof ProveedorServiciosRoute
   '/proveedor/solicitudes': typeof ProveedorSolicitudesRoute
   '/proveedores/$providerId': typeof ProveedoresProviderIdRoute
   '/solicitar/$serviceId': typeof SolicitarServiceIdRoute
@@ -135,7 +151,9 @@ export interface FileRoutesById {
   '/registro': typeof RegistroRoute
   '/propietario/perfil': typeof PropietarioPerfilRoute
   '/propietario/solicitudes': typeof PropietarioSolicitudesRoute
+  '/proveedor/perfil': typeof ProveedorPerfilRoute
   '/proveedor/reportes': typeof ProveedorReportesRoute
+  '/proveedor/servicios': typeof ProveedorServiciosRoute
   '/proveedor/solicitudes': typeof ProveedorSolicitudesRoute
   '/proveedores/$providerId': typeof ProveedoresProviderIdRoute
   '/solicitar/$serviceId': typeof SolicitarServiceIdRoute
@@ -153,7 +171,9 @@ export interface FileRouteTypes {
     | '/registro'
     | '/propietario/perfil'
     | '/propietario/solicitudes'
+    | '/proveedor/perfil'
     | '/proveedor/reportes'
+    | '/proveedor/servicios'
     | '/proveedor/solicitudes'
     | '/proveedores/$providerId'
     | '/solicitar/$serviceId'
@@ -167,7 +187,9 @@ export interface FileRouteTypes {
     | '/registro'
     | '/propietario/perfil'
     | '/propietario/solicitudes'
+    | '/proveedor/perfil'
     | '/proveedor/reportes'
+    | '/proveedor/servicios'
     | '/proveedor/solicitudes'
     | '/proveedores/$providerId'
     | '/solicitar/$serviceId'
@@ -183,7 +205,9 @@ export interface FileRouteTypes {
     | '/registro'
     | '/propietario/perfil'
     | '/propietario/solicitudes'
+    | '/proveedor/perfil'
     | '/proveedor/reportes'
+    | '/proveedor/servicios'
     | '/proveedor/solicitudes'
     | '/proveedores/$providerId'
     | '/solicitar/$serviceId'
@@ -274,11 +298,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProveedorIndexRouteImport
       parentRoute: typeof ProveedorRoute
     }
+    '/proveedor/perfil': {
+      id: '/proveedor/perfil'
+      path: '/perfil'
+      fullPath: '/proveedor/perfil'
+      preLoaderRoute: typeof ProveedorPerfilRouteImport
+      parentRoute: typeof ProveedorRoute
+    }
     '/proveedor/reportes': {
       id: '/proveedor/reportes'
       path: '/reportes'
       fullPath: '/proveedor/reportes'
       preLoaderRoute: typeof ProveedorReportesRouteImport
+      parentRoute: typeof ProveedorRoute
+    }
+    '/proveedor/servicios': {
+      id: '/proveedor/servicios'
+      path: '/servicios'
+      fullPath: '/proveedor/servicios'
+      preLoaderRoute: typeof ProveedorServiciosRouteImport
       parentRoute: typeof ProveedorRoute
     }
     '/proveedor/solicitudes': {
@@ -322,13 +360,17 @@ const PropietarioRouteWithChildren = PropietarioRoute._addFileChildren(
 )
 
 interface ProveedorRouteChildren {
+  ProveedorPerfilRoute: typeof ProveedorPerfilRoute
   ProveedorReportesRoute: typeof ProveedorReportesRoute
+  ProveedorServiciosRoute: typeof ProveedorServiciosRoute
   ProveedorSolicitudesRoute: typeof ProveedorSolicitudesRoute
   ProveedorIndexRoute: typeof ProveedorIndexRoute
 }
 
 const ProveedorRouteChildren: ProveedorRouteChildren = {
+  ProveedorPerfilRoute: ProveedorPerfilRoute,
   ProveedorReportesRoute: ProveedorReportesRoute,
+  ProveedorServiciosRoute: ProveedorServiciosRoute,
   ProveedorSolicitudesRoute: ProveedorSolicitudesRoute,
   ProveedorIndexRoute: ProveedorIndexRoute,
 }
