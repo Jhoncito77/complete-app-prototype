@@ -15,12 +15,12 @@ import type { CategoryId, Role } from "@/lib/petcare/types";
 import { cn } from "@/lib/utils";
 
 interface RegisterSearch {
-  tipo?: Role;
+  tipo?: Role | undefined;
 }
 
 export const Route = createFileRoute("/registro")({
   validateSearch: (s: Record<string, unknown>): RegisterSearch => ({
-    tipo: s.tipo === "proveedor" || s.tipo === "propietario" ? s.tipo : undefined,
+    tipo: s["tipo"] === "proveedor" || s["tipo"] === "propietario" ? s["tipo"] : undefined,
   }),
   head: () => ({
     meta: [

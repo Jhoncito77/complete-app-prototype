@@ -46,7 +46,7 @@ export function SiteHeader() {
                   to={item.to}
                   className={linkBase}
                   activeProps={{ className: linkActive, "aria-current": "page" }}
-                  activeOptions={{ exact: item.exact }}
+                  activeOptions={{ exact: !!item.exact }}
                 >
                   {item.label}
                 </Link>
@@ -95,7 +95,7 @@ export function SiteHeader() {
                       onClick={() => setOpen(false)}
                       className={`${linkBase} py-3 text-base`}
                       activeProps={{ className: linkActive }}
-                      activeOptions={{ exact: item.exact }}
+                      activeOptions={{ exact: !!item.exact }}
                     >
                       {item.label}
                     </Link>

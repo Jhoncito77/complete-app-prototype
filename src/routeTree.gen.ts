@@ -12,10 +12,12 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DesignSystemRouteImport } from './routes/design-system'
 import { Route as ExplorarRouteImport } from './routes/explorar'
+import { Route as FlujosRouteImport } from './routes/flujos'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as PropietarioRouteImport } from './routes/propietario'
 import { Route as ProveedorRouteImport } from './routes/proveedor'
 import { Route as RegistroRouteImport } from './routes/registro'
+import { Route as UsabilidadRouteImport } from './routes/usabilidad'
 import { Route as PropietarioIndexRouteImport } from './routes/propietario.index'
 import { Route as PropietarioPerfilRouteImport } from './routes/propietario.perfil'
 import { Route as PropietarioSolicitudesRouteImport } from './routes/propietario.solicitudes'
@@ -42,6 +44,11 @@ const ExplorarRoute = ExplorarRouteImport.update({
   path: '/explorar',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FlujosRoute = FlujosRouteImport.update({
+  id: '/flujos',
+  path: '/flujos',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
@@ -60,6 +67,11 @@ const ProveedorRoute = ProveedorRouteImport.update({
 const RegistroRoute = RegistroRouteImport.update({
   id: '/registro',
   path: '/registro',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UsabilidadRoute = UsabilidadRouteImport.update({
+  id: '/usabilidad',
+  path: '/usabilidad',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PropietarioIndexRoute = PropietarioIndexRouteImport.update({
@@ -117,10 +129,12 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/design-system': typeof DesignSystemRoute
   '/explorar': typeof ExplorarRoute
+  '/flujos': typeof FlujosRoute
   '/login': typeof LoginRoute
   '/propietario': typeof PropietarioRouteWithChildren
   '/proveedor': typeof ProveedorRouteWithChildren
   '/registro': typeof RegistroRoute
+  '/usabilidad': typeof UsabilidadRoute
   '/propietario/perfil': typeof PropietarioPerfilRoute
   '/propietario/solicitudes': typeof PropietarioSolicitudesRoute
   '/proveedor/perfil': typeof ProveedorPerfilRoute
@@ -136,8 +150,10 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/design-system': typeof DesignSystemRoute
   '/explorar': typeof ExplorarRoute
+  '/flujos': typeof FlujosRoute
   '/login': typeof LoginRoute
   '/registro': typeof RegistroRoute
+  '/usabilidad': typeof UsabilidadRoute
   '/propietario/perfil': typeof PropietarioPerfilRoute
   '/propietario/solicitudes': typeof PropietarioSolicitudesRoute
   '/proveedor/perfil': typeof ProveedorPerfilRoute
@@ -154,10 +170,12 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/design-system': typeof DesignSystemRoute
   '/explorar': typeof ExplorarRoute
+  '/flujos': typeof FlujosRoute
   '/login': typeof LoginRoute
   '/propietario': typeof PropietarioRouteWithChildren
   '/proveedor': typeof ProveedorRouteWithChildren
   '/registro': typeof RegistroRoute
+  '/usabilidad': typeof UsabilidadRoute
   '/propietario/perfil': typeof PropietarioPerfilRoute
   '/propietario/solicitudes': typeof PropietarioSolicitudesRoute
   '/proveedor/perfil': typeof ProveedorPerfilRoute
@@ -175,10 +193,12 @@ export interface FileRouteTypes {
     | '/'
     | '/design-system'
     | '/explorar'
+    | '/flujos'
     | '/login'
     | '/propietario'
     | '/proveedor'
     | '/registro'
+    | '/usabilidad'
     | '/propietario/perfil'
     | '/propietario/solicitudes'
     | '/proveedor/perfil'
@@ -194,8 +214,10 @@ export interface FileRouteTypes {
     | '/'
     | '/design-system'
     | '/explorar'
+    | '/flujos'
     | '/login'
     | '/registro'
+    | '/usabilidad'
     | '/propietario/perfil'
     | '/propietario/solicitudes'
     | '/proveedor/perfil'
@@ -211,10 +233,12 @@ export interface FileRouteTypes {
     | '/'
     | '/design-system'
     | '/explorar'
+    | '/flujos'
     | '/login'
     | '/propietario'
     | '/proveedor'
     | '/registro'
+    | '/usabilidad'
     | '/propietario/perfil'
     | '/propietario/solicitudes'
     | '/proveedor/perfil'
@@ -231,10 +255,12 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DesignSystemRoute: typeof DesignSystemRoute
   ExplorarRoute: typeof ExplorarRoute
+  FlujosRoute: typeof FlujosRoute
   LoginRoute: typeof LoginRoute
   PropietarioRoute: typeof PropietarioRouteWithChildren
   ProveedorRoute: typeof ProveedorRouteWithChildren
   RegistroRoute: typeof RegistroRoute
+  UsabilidadRoute: typeof UsabilidadRoute
   ProveedoresProviderIdRoute: typeof ProveedoresProviderIdRoute
   SolicitarServiceIdRoute: typeof SolicitarServiceIdRoute
 }
@@ -260,6 +286,13 @@ declare module '@tanstack/react-router' {
       path: '/explorar'
       fullPath: '/explorar'
       preLoaderRoute: typeof ExplorarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/flujos': {
+      id: '/flujos'
+      path: '/flujos'
+      fullPath: '/flujos'
+      preLoaderRoute: typeof FlujosRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -288,6 +321,13 @@ declare module '@tanstack/react-router' {
       path: '/registro'
       fullPath: '/registro'
       preLoaderRoute: typeof RegistroRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/usabilidad': {
+      id: '/usabilidad'
+      path: '/usabilidad'
+      fullPath: '/usabilidad'
+      preLoaderRoute: typeof UsabilidadRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/propietario/': {
@@ -403,10 +443,12 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DesignSystemRoute: DesignSystemRoute,
   ExplorarRoute: ExplorarRoute,
+  FlujosRoute: FlujosRoute,
   LoginRoute: LoginRoute,
   PropietarioRoute: PropietarioRouteWithChildren,
   ProveedorRoute: ProveedorRouteWithChildren,
   RegistroRoute: RegistroRoute,
+  UsabilidadRoute: UsabilidadRoute,
   ProveedoresProviderIdRoute: ProveedoresProviderIdRoute,
   SolicitarServiceIdRoute: SolicitarServiceIdRoute,
 }

@@ -44,16 +44,16 @@ export interface User {
   name: string;
   email: string;
   password: string;
-  phone?: string;
-  city?: string;
-  providerId?: string;
+  phone?: string | undefined;
+  city?: string | undefined;
+  providerId?: string | undefined;
   pets: Pet[];
 }
 
 export interface StatusEvent {
   status: RequestStatus;
   at: string; // ISO
-  note?: string;
+  note?: string | undefined;
 }
 
 export interface ServiceRequest {

@@ -12,12 +12,12 @@ import { DEMO_OWNER_EMAIL, DEMO_PASSWORD, DEMO_PROVIDER_EMAIL } from "@/lib/petc
 import type { User } from "@/lib/petcare/types";
 
 interface LoginSearch {
-  redirect?: string;
+  redirect?: string | undefined;
 }
 
 export const Route = createFileRoute("/login")({
   validateSearch: (s: Record<string, unknown>): LoginSearch => ({
-    redirect: typeof s.redirect === "string" && s.redirect.startsWith("/") && !s.redirect.startsWith("//") ? s.redirect : undefined,
+    redirect: typeof s["redirect"] === "string" && s["redirect"].startsWith("/") && !s["redirect"].startsWith("//") ? s["redirect"] : undefined,
   }),
   head: () => ({
     meta: [

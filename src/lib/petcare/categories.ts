@@ -47,7 +47,7 @@ export const CATEGORIES: CategoryMeta[] = [
 ];
 
 export function getCategory(id: CategoryId): CategoryMeta {
-  return CATEGORIES.find((c) => c.id === id) ?? CATEGORIES[0];
+  return CATEGORIES.find((c) => c.id === id) ?? CATEGORIES[0]!;
 }
 
 export const STATUS_META: Record<
