@@ -11,9 +11,9 @@ export function PageHeader({
   eyebrow,
 }: {
   title: ReactNode;
-  description?: ReactNode;
-  actions?: ReactNode;
-  eyebrow?: ReactNode;
+  description?: ReactNode | undefined;
+  actions?: ReactNode | undefined;
+  eyebrow?: ReactNode | undefined;
 }) {
   return (
     <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
@@ -36,9 +36,9 @@ export function EmptyState({
 }: {
   icon: LucideIcon;
   title: string;
-  description?: string;
-  action?: ReactNode;
-  className?: string;
+  description?: string | undefined;
+  action?: ReactNode | undefined;
+  className?: string | undefined;
 }) {
   return (
     <div className={cn("paw-pattern flex flex-col items-center rounded-2xl border border-dashed border-border bg-card px-6 py-12 text-center", className)}>
@@ -63,11 +63,11 @@ export function FormField({
 }: {
   id: string;
   label: string;
-  error?: string;
-  hint?: string;
-  optional?: boolean;
+  error?: string | undefined;
+  hint?: string | undefined;
+  optional?: boolean | undefined;
   children: ReactNode;
-  className?: string;
+  className?: string | undefined;
 }) {
   return (
     <div className={cn("space-y-1.5", className)}>
@@ -99,7 +99,7 @@ export function StatCard({
   value: number | string;
   icon: LucideIcon;
   tone: string;
-  hint?: string;
+  hint?: string | undefined;
 }) {
   return (
     <div className="surface-card flex items-start justify-between gap-3 p-5">

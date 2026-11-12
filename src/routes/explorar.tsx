@@ -20,10 +20,10 @@ import type { CategoryId } from "@/lib/petcare/types";
 import { cn } from "@/lib/utils";
 
 interface ExploreSearch {
-  q?: string;
-  categoria?: CategoryId;
-  ubicacion?: string;
-  pagina?: number;
+  q?: string | undefined;
+  categoria?: CategoryId | undefined;
+  ubicacion?: string | undefined;
+  pagina?: number | undefined;
 }
 
 const PAGE_SIZE = 6;
@@ -31,10 +31,10 @@ const CATEGORY_IDS = CATEGORIES.map((c) => c.id) as string[];
 
 export const Route = createFileRoute("/explorar")({
   validateSearch: (s: Record<string, unknown>): ExploreSearch => ({
-    q: typeof s.q === "string" && s.q ? s.q : undefined,
-    categoria: typeof s.categoria === "string" && CATEGORY_IDS.includes(s.categoria) ? (s.categoria as CategoryId) : undefined,
-    ubicacion: typeof s.ubicacion === "string" && s.ubicacion ? s.ubicacion : undefined,
-    pagina: typeof s.pagina === "number" && s.pagina > 1 ? Math.floor(s.pagina) : undefined,
+    q: typeof s["q"] === "string" && s["q"] ? s["q"] : undefined,
+    categoria: typeof s["categoria"] === "string" && CATEGORY_IDS.includes(s["categoria"]) ? (s["categoria"] as CategoryId) : undefined,
+    ubicacion: typeof s["ubicacion"] === "string" && s["ubicacion"] ? s["ubicacion"] : undefined,
+    pagina: typeof s["pagina"] === "number" && s["pagina"] > 1 ? Math.floor(s["pagina"]) : undefined,
   }),
   head: () => ({
     meta: [

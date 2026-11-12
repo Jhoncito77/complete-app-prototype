@@ -16,7 +16,7 @@ export function LogoMark({ className }: { className?: string }) {
   );
 }
 
-export function Logo({ className, to = "/" }: { className?: string; to?: "/" | "/proveedor" | "/propietario" }) {
+export function Logo({ className, to = "/" }: { className?: string | undefined; to?: "/" | "/proveedor" | "/propietario" }) {
   return (
     <Link to={to} className={cn("inline-flex items-center gap-2.5 rounded-lg", className)} aria-label="PetCare, ir al inicio">
       <LogoMark />

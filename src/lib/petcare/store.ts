@@ -126,7 +126,7 @@ export interface RegisterInput {
   name: string;
   email: string;
   password: string;
-  business?: { name: string; category: CategoryId; city: string; neighborhood: string; phone: string };
+  business?: { name: string; category: CategoryId; city: string; neighborhood: string; phone: string } | undefined;
 }
 
 export function emailExists(email: string) {

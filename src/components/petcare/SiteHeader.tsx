@@ -8,7 +8,7 @@ import { UserMenu } from "./UserMenu";
 import { DemoStrip } from "./DemoNotice";
 import { useHydrated, useSession } from "@/lib/petcare/store";
 
-type NavItem = { to: "/" | "/explorar" | "/propietario" | "/propietario/solicitudes" | "/propietario/perfil"; label: string; exact?: boolean };
+type NavItem = { to: "/" | "/explorar" | "/propietario" | "/propietario/solicitudes" | "/propietario/perfil"; label: string; exact?: boolean | undefined };
 
 const PUBLIC_NAV: NavItem[] = [
   { to: "/", label: "Inicio", exact: true },
@@ -46,7 +46,7 @@ export function SiteHeader() {
                   to={item.to}
                   className={linkBase}
                   activeProps={{ className: linkActive, "aria-current": "page" }}
-                  activeOptions={{ exact: item.exact }}
+                  activeOptions={{ exact: !!item.exact }}
                 >
                   {item.label}
                 </Link>
@@ -95,7 +95,7 @@ export function SiteHeader() {
                       onClick={() => setOpen(false)}
                       className={`${linkBase} py-3 text-base`}
                       activeProps={{ className: linkActive }}
-                      activeOptions={{ exact: item.exact }}
+                      activeOptions={{ exact: !!item.exact }}
                     >
                       {item.label}
                     </Link>

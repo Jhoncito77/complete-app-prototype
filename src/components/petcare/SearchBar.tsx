@@ -6,7 +6,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { CITIES } from "@/lib/petcare/categories";
 import { cn } from "@/lib/utils";
 
-export function SearchBar({ className, size = "lg" }: { className?: string; size?: "lg" | "md" }) {
+export function SearchBar({ className, size = "lg" }: { className?: string | undefined; size?: "lg" | "md" }) {
   const navigate = useNavigate();
   const [q, setQ] = useState("");
   const [city, setCity] = useState<string>("todas");

@@ -59,7 +59,7 @@ function SidebarNav({ user, onNavigate }: { user: User; onNavigate?: () => void 
             key={item.to}
             to={item.to}
             onClick={onNavigate}
-            activeOptions={{ exact: item.exact }}
+            activeOptions={{ exact: !!item.exact }}
             className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
             activeProps={{ className: "bg-lavender text-primary hover:bg-lavender hover:text-primary", "aria-current": "page" }}
           >
