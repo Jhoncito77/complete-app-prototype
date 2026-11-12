@@ -26,9 +26,9 @@ export function ConfirmDialog({
   title: string;
   description: ReactNode;
   confirmLabel: string;
-  tone?: "default" | "destructive" | "success";
+  tone?: "default" | "destructive" | "success" | undefined;
   onConfirm: () => void;
-  children?: ReactNode;
+  children?: ReactNode | undefined;
 }) {
   return (
     <AlertDialog open={open} onOpenChange={onOpenChange}>

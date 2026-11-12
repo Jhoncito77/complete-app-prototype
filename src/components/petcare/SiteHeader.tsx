@@ -8,7 +8,7 @@ import { UserMenu } from "./UserMenu";
 import { DemoStrip } from "./DemoNotice";
 import { useHydrated, useSession } from "@/lib/petcare/store";
 
-type NavItem = { to: "/" | "/explorar" | "/propietario" | "/propietario/solicitudes" | "/propietario/perfil"; label: string; exact?: boolean };
+type NavItem = { to: "/" | "/explorar" | "/propietario" | "/propietario/solicitudes" | "/propietario/perfil"; label: string; exact?: boolean } | undefined;
 
 const PUBLIC_NAV: NavItem[] = [
   { to: "/", label: "Inicio", exact: true },
