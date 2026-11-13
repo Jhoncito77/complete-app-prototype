@@ -11,7 +11,7 @@ export function DemoStrip() {
           <FlaskConical className="size-3.5" aria-hidden />
           Prototipo navegable · Los proveedores y solicitudes son datos de demostración
         </p>
-        <nav aria-label="Documentación del proyecto" className="flex items-center gap-3">
+        <nav aria-label="Documentación del proyecto" className="hidden items-center gap-3 sm:flex">
           <Link to="/design-system" className="hover:underline">Design System</Link>
           <span aria-hidden className="text-secondary">·</span>
           <Link to="/flujos" className="hover:underline">User Flow y Journey</Link>
