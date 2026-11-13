@@ -35,7 +35,7 @@ export function SearchBar({ className, size = "lg" }: { className?: string | und
         <input
           value={q}
           onChange={(e) => setQ(e.target.value)}
-          placeholder="¿Qué necesitas? Ej.: vacunación, baño, paseo"
+          placeholder="Ej.: vacunación, baño, paseo"
           className={cn("w-full bg-transparent text-base text-foreground outline-none placeholder:text-muted-foreground", size === "lg" ? "h-12" : "h-11")}
         />
       </label>
